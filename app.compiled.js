@@ -95,7 +95,7 @@ function PharmacyPOSApp() {
     useEffect(() => { localStorage.setItem("em_demo_expenses", JSON.stringify(expenses)); }, [expenses]);
     useEffect(() => { localStorage.setItem("em_demo_held_carts", JSON.stringify(heldCarts)); }, [heldCarts]);
 
-    // Close dropdowns on outside click
+    // Close dropdowns on outside click or mobile touch
     useEffect(() => {
         const handleOutsideClick = (evt) => {
             if (!evt.target.closest(".nav-dropdown-wrapper")) {
@@ -103,7 +103,11 @@ function PharmacyPOSApp() {
             }
         };
         window.addEventListener("click", handleOutsideClick);
-        return () => window.removeEventListener("click", handleOutsideClick);
+        window.addEventListener("touchstart", handleOutsideClick, { passive: true });
+        return () => {
+            window.removeEventListener("click", handleOutsideClick);
+            window.removeEventListener("touchstart", handleOutsideClick);
+        };
     }, []);
 
     // Cart calculations
@@ -295,7 +299,7 @@ function PharmacyPOSApp() {
             style: { zIndex: 1000, overflow: "visible" }
         },
             // Left: Top Navigation Tabs
-            e("div", { className: "flex items-center gap-1 text-[13px] font-semibold text-slate-700", style: { overflow: "visible" } },
+            e("div", { className: "flex items-center gap-1 text-[13px] font-semibold text-slate-700 overflow-x-auto scrollbar-none py-1 flex-1 min-w-0", style: { overflowY: "visible" } },
                 
                 // 1. DASHBOARD
                 e("button", {
@@ -755,9 +759,9 @@ function DashboardView({ inventory, dailySales, expenses, cards, heldCarts, onNa
 // VIEW 2: POS TERMINAL
 // ─────────────────────────────────────────────────────────────
 function PosView({ inventory, cart, addToCart, updateQty, holdCart, subtotal, search, setSearch, setPaymentModal, filteredProducts }) {
-    return e("div", { className: "flex-1 flex overflow-hidden" },
+    return e("div", { className: "flex-1 flex flex-col lg:flex-row overflow-hidden" },
         // Left Dispensing Cart Panel
-        e("div", { className: "w-[420px] bg-white border-r border-slate-200 flex flex-col shadow-sm" },
+        e("div", { className: "w-full lg:w-[420px] max-h-[40vh] lg:max-h-none bg-white border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col shadow-sm flex-shrink-0" },
             e("div", { className: "p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50" },
                 e("div", { className: "text-xs font-black uppercase text-[#072946] tracking-wider" }, "Active Dispensing Cart"),
                 e("div", { className: "flex items-center gap-2" },
