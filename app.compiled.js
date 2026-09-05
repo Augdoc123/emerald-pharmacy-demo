@@ -179,7 +179,7 @@ function PharmacyPOSApp() {
 
         // High-Stacking Context Navigation Bar with Unfolding Dropdown Protection
         e("nav", { className: "bg-[#072946] px-5 py-0 flex items-center justify-between border-b-2 border-[#00D2FF] shadow-lg relative z-40" },
-            e("div", { className: "flex items-center space-x-0.5 overflow-x-auto scrollbar-none py-0.5" },
+            e("div", { className: "flex items-center space-x-0.5 py-0.5 flex-nowrap" },
                 navStructure.map(item => {
                     const hasSubmenu = item.children && item.children.length > 0;
                     const isOpen = activeDropdown === item.id;
