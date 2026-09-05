@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="royal-metallic-blue">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emerald Pharmacy POS - Interactive Demo Showcase</title>
+    <!-- Ultra-Low-Latency Edge Dependencies via Cloudflare CDNJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Plus Jakarta Sans", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"]
+                    },
+                    colors: {
+                        navy: { 900: "#072946", 800: "#0A3A63", 950: "#0B192C" },
+                        cyan: { 500: "#00D2FF", 600: "#0284C7", 700: "#0369A1" },
+                        rose: { 500: "#F43F5E", 600: "#E11D48", 700: "#BE123C" }
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { background-color: #F4F7FB; font-family: "Plus Jakarta Sans", sans-serif; }
+        .glass-cyan { background: rgba(2, 132, 199, 0.08); border: 1px solid #0284C7; color: #0369A1; }
+        .glass-rose { background: rgba(244, 63, 94, 0.08); border: 1px solid #F43F5E; color: #BE123C; }
+        .receipt-body { font-family: "JetBrains Mono", monospace; font-size: 11px; }
+    </style>
+</head>
+<body class="bg-[#F4F7FB] text-[#0B192C]">
+    <div id="root">
+        <!-- Inline Skeleton to eliminate blank white flashes on mobile networks -->
+        <div class="min-h-screen flex flex-col items-center justify-center p-6">
+            <div class="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+            <div class="mt-4 text-xs font-bold uppercase tracking-wider text-slate-500 font-mono">Loading Emerald POS Demo Engine...</div>
+        </div>
+    </div>
+    <script src="./app.compiled.js"></script>
+</body>
+</html>
